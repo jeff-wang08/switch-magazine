@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
+import { ConvexHttpClient } from "convex/browser";
 import { requiredLeadFields, type LeadPayload } from "@/app/api-leads-types";
+import { api } from "../../../../convex/_generated/api";
 
 function validateLeadPayload(body: Partial<LeadPayload>) {
   const missing = requiredLeadFields.filter((field) => {
@@ -27,47 +29,21 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: validationError }, { status: 400 });
     }
 
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL;
 
-    if (!supabaseUrl || !serviceRoleKey) {
+    if (!convexUrl) {
       return NextResponse.json(
         {
-          error: "Supabase is not configured. Add NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.",
+          error: "Convex is not configured. Add NEXT_PUBLIC_CONVEX_URL.",
         },
         { status: 500 },
       );
     }
 
-    const payload = {
-      ...body,
-      trade_interest: body.program_interest,
-      consent_timestamp: new Date().toISOString(),
-      source: "switch-magazine-apply",
-    };
+    const client = new ConvexHttpClient(convexUrl);
+    const leadId = await client.mutation(api.leads.create, body as LeadPayload);
 
-    const response = await fetch(`${supabaseUrl}/rest/v1/leads`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        apikey: serviceRoleKey,
-        Authorization: `Bearer ${serviceRoleKey}`,
-        Prefer: "return=representation",
-      },
-      body: JSON.stringify(payload),
-    });
-
-    if (!response.ok) {
-      const text = await response.text();
-      return NextResponse.json(
-        { error: `Supabase insert failed: ${text}` },
-        { status: 502 },
-      );
-    }
-
-    const inserted = await response.json();
-
-    return NextResponse.json({ ok: true, lead: inserted?.[0] ?? null });
+    return NextResponse.json({ ok: true, leadId });
   } catch (error) {
     return NextResponse.json(
       {
