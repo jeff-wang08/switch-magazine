@@ -8,10 +8,10 @@ export const metadata: Metadata = {
 };
 
 const navItems = [
-  "Programs",
-  "Funding",
-  "For Providers",
-  "Apply",
+  { label: "Programs", href: "/programs" },
+  { label: "Funding", href: "/funding" },
+  { label: "For Providers", href: "/providers" },
+  { label: "Apply", href: "/apply" },
 ];
 
 export default function RootLayout({
@@ -30,9 +30,9 @@ export default function RootLayout({
             </Link>
             <nav className="flex flex-wrap gap-2 text-sm font-semibold">
               {navItems.map((item) => (
-                <a key={item} className="rounded-full border border-black/15 bg-white/70 px-4 py-2 transition hover:border-black hover:bg-ink hover:text-white" href={item === "Apply" ? "/apply" : "#"}>
-                  {item}
-                </a>
+                <Link key={item.href} className="rounded-full border border-black/15 bg-white/70 px-4 py-2 transition hover:border-black hover:bg-ink hover:text-white" href={item.href}>
+                  {item.label}
+                </Link>
               ))}
             </nav>
           </div>
