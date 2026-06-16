@@ -5,13 +5,13 @@ const partnerSignals = [
   "Approved or approval-aware career programs",
   "Online or hybrid delivery for California adults",
   "Admissions team ready to qualify prospects",
-  "Interest in a small pilot before larger commitments",
+  "Interest in a small prepaid pilot before larger commitments",
 ];
 
 const pilotSteps = [
   "Define what a qualified applicant means for your admissions team",
-  "Route a small batch of relevant California prospects",
-  "Review quality before discussing larger volume or pricing",
+  "Review a small sample profile or fit conversation",
+  "Use a prepaid pilot credit/package for qualified lead delivery",
 ];
 
 const bestFits = [
@@ -28,7 +28,7 @@ const firstPassExclusions = [
   "Programs that need guaranteed enrollment volume on day one",
 ];
 
-const deskItems = ["Qualified applicant routing", "California adult learners", "Performance-first pilot", "No school ownership"];
+const deskItems = ["Qualified applicant routing", "California adult learners", "Prepaid pilot package", "No school ownership"];
 
 export default function ProvidersPage() {
   return (
@@ -49,7 +49,7 @@ export default function ProvidersPage() {
               Add qualified applicant flow without building a new funnel.
             </h1>
             <p className="mt-6 max-w-2xl border-l-4 border-mutedRed pl-5 text-base leading-8 text-black/70">
-              Switch Magazine is assembling a small California partner network for independent education providers that want career-minded adult applicants in practical, job-aligned programs.
+              Switch Magazine is assembling a small California partner network for independent education providers that want career-minded adult applicants in practical, job-aligned programs, starting with focused prepaid pilots.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <a className="rounded-full bg-ink px-6 py-3 text-sm font-bold text-white shadow-[0_16px_30px_rgba(18,18,18,0.18)] transition hover:-translate-y-0.5 hover:bg-mutedRed" href="mailto:partners@switchmagazine.com?subject=Switch%20Magazine%20provider%20pilot">
@@ -105,10 +105,10 @@ export default function ProvidersPage() {
         <div className="mx-auto grid max-w-6xl gap-8 px-6 py-12 md:grid-cols-[0.9fr_1.1fr] md:items-center">
           <div>
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-[#f0d25b]">Commercial note</p>
-            <h2 className="font-serifDisplay text-4xl font-black leading-none">Start with quality, then talk volume.</h2>
+            <h2 className="font-serifDisplay text-4xl font-black leading-none">Start with fit, then package the pilot.</h2>
           </div>
           <p className="text-sm leading-7 text-white/75">
-            The first goal is to prove applicant fit with a small batch, not overpromise enrollment. Admissions decisions, program requirements, pricing, and funding conversations remain with each education partner.
+            The first goal is to define qualified applicant criteria and prove fit before larger commitments. Admissions decisions, program requirements, pricing, funding conversations, completion, certification, and employment outcomes remain with each education partner.
           </p>
         </div>
       </section>
